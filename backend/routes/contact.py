@@ -36,10 +36,14 @@ async def create_contact_message(contact_data: ContactCreate):
         if result.inserted_id:
             logger.info(f"Contact message created: {contact.id} from {contact.email}")
             
+            # Convert datetime to string for JSON serialization
+            response_data = contact_dict.copy()
+            response_data["timestamp"] = contact_dict["timestamp"].isoformat()
+            
             return {
                 "success": True,
                 "message": "Thank you for reaching out! I will get back to you soon.",
-                "data": contact_dict
+                "data": response_data
             }
         else:
             raise HTTPException(
