@@ -110,11 +110,10 @@ const result = response.data;
 
 ## Integration Checklist
 
-- [ ] Create Contact model in backend
-- [ ] Create Contact API endpoint
+- [x] Create Contact model in backend
+- [x] Create Contact API endpoint
 - [ ] Test API with curl/Postman
-- [ ] Update Contact.jsx to use real API
-- [ ] Remove mock function from mock.js
+- [x] Update Contact.jsx to use real API
 - [ ] Test form submission end-to-end
 - [ ] Verify data is stored in MongoDB
 
