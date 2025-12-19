@@ -41,11 +41,14 @@ async def create_contact_message(contact_data: ContactCreate):
             response_data = contact_dict.copy()
             response_data["timestamp"] = contact_dict["timestamp"].isoformat()
             
-            return {
-                "success": True,
-                "message": "Thank you for reaching out! I will get back to you soon.",
-                "data": response_data
-            }
+            return JSONResponse(
+                status_code=status.HTTP_201_CREATED,
+                content={
+                    "success": True,
+                    "message": "Thank you for reaching out! I will get back to you soon.",
+                    "data": response_data
+                }
+            )
         else:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
