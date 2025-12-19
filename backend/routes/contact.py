@@ -66,7 +66,7 @@ async def get_contact_messages(status_filter: str = None, limit: int = 100):
         if status_filter:
             query["status"] = status_filter
             
-        contacts = await db.contacts.find(query).sort("timestamp", -1).limit(limit).to_list(limit)
+        contacts = await db.contacts.find(query, {"_id": 0}).sort("timestamp", -1).limit(limit).to_list(limit)
         
         logger.info(f"Retrieved {len(contacts)} contact messages")
         return contacts
