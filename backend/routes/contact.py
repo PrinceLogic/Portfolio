@@ -37,9 +37,16 @@ async def create_contact_message(contact_data: ContactCreate):
         if result.inserted_id:
             logger.info(f"Contact message created: {contact.id} from {contact.email}")
             
-            # Convert datetime to string for JSON serialization
-            response_data = contact_dict.copy()
-            response_data["timestamp"] = contact_dict["timestamp"].isoformat()
+            # Create clean response data without any MongoDB ObjectIds
+            response_data = {
+                "id": contact.id,
+                "name": contact.name,
+                "email": contact.email,
+                "subject": contact.subject,
+                "message": contact.message,
+                "timestamp": contact.timestamp.isoformat(),
+                "status": contact.status
+            }
             
             return JSONResponse(
                 status_code=status.HTTP_201_CREATED,
