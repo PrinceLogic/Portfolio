@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Loader } from 'lucide-react';
-import { mockContactSubmit } from '../utils/mock';
+import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Contact = () => {
   const { toast } = useToast();
@@ -25,7 +27,8 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const result = await mockContactSubmit(formData);
+      const response = await axios.post(`${BACKEND_URL}/api/contact`, formData);
+      const result = response.data;
       
       toast({
         title: 'Message Sent Successfully!',
@@ -41,9 +44,12 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Contact form error:', error);
+      const errorMessage = error.response?.data?.detail || 'Failed to send message. Please try again.';
+      
       toast({
         title: 'Error',
-        description: 'Failed to send message. Please try again.',
+        description: errorMessage,
         variant: 'destructive',
         duration: 5000,
       });
