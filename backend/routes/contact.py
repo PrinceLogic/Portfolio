@@ -17,7 +17,7 @@ def set_database(database):
     db = database
 
 
-@router.post("", response_model=dict, status_code=status.HTTP_201_CREATED)
+@router.post("", status_code=status.HTTP_201_CREATED)
 async def create_contact_message(contact_data: ContactCreate):
     """
     Submit a contact form message.
