@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send, Loader } from 'lucide-react';
 import axios from 'axios';
 import { useToast } from '../hooks/use-toast';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -45,7 +45,19 @@ const Contact = () => {
       });
     } catch (error) {
       console.error('Contact form error:', error);
-      const errorMessage = error.response?.data?.detail || 'Failed to send message. Please try again.';
+      
+      let errorMessage = 'Failed to send message. Please try again.';
+      
+      if (error.response) {
+        // Server responded with error status
+        errorMessage = error.response.data?.detail || error.response.data?.message || errorMessage;
+      } else if (error.request) {
+        // Request was made but no response received
+        errorMessage = 'Unable to connect to server. Please check if the backend is running.';
+      } else if (!BACKEND_URL || BACKEND_URL === 'undefined') {
+        // Backend URL not configured
+        errorMessage = 'Backend URL not configured. Please set REACT_APP_BACKEND_URL environment variable.';
+      }
       
       toast({
         title: 'Error',

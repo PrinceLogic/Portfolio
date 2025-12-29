@@ -41,7 +41,7 @@ const Hero = () => {
           
           <div className="flex items-center justify-center gap-6 pt-8 animate-slide-up animation-delay-800">
             <a
-              href="https://github.com"
+              href="https://github.com/PrinceLogic"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-gray-800 rounded-full hover:bg-cyan-500 hover:scale-110 transition-all duration-300 group"
@@ -49,7 +49,7 @@ const Hero = () => {
               <Github className="w-6 h-6 text-gray-300 group-hover:text-black" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/prince-kahar"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-gray-800 rounded-full hover:bg-cyan-500 hover:scale-110 transition-all duration-300 group"

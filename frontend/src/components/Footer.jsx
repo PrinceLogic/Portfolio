@@ -74,9 +74,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-          <p className="text-gray-400 flex items-center justify-center gap-2">
-            © {currentYear} Prince Kahar. Made with <Heart className="w-4 h-4 text-red-500 animate-pulse" /> and React
-          </p>
+          
         </div>
       </div>
     </footer>
