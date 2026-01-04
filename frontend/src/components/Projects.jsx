@@ -4,34 +4,10 @@ import { ExternalLink, Github } from 'lucide-react';
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
+      title: 'Ecofinds E-Commerce Platform',
       description: 'A full-stack MERN e-commerce application with payment integration, user authentication, and admin dashboard. Features include product management, cart functionality, and order tracking.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express', 'Stripe', 'JWT'],
       gradient: 'from-cyan-500 to-blue-600',
-      github: 'https://github.com',
-      demo: 'https://demo.com'
-    },
-    {
-      title: 'Social Media Dashboard',
-      description: 'Real-time social media analytics dashboard with data visualization. Includes user engagement metrics, post scheduling, and multi-platform integration.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Chart.js'],
-      gradient: 'from-emerald-500 to-teal-600',
-      github: 'https://github.com',
-      demo: 'https://demo.com'
-    },
-    {
-      title: 'Task Management System',
-      description: 'Collaborative task management application with real-time updates. Features drag-and-drop interface, team collaboration, and progress tracking.',
-      technologies: ['React', 'Express', 'MongoDB', 'Redux', 'WebSockets'],
-      gradient: 'from-purple-500 to-pink-600',
-      github: 'https://github.com',
-      demo: 'https://demo.com'
-    },
-    {
-      title: 'Weather Forecast App',
-      description: 'Dynamic weather application with real-time data from multiple APIs. Provides detailed forecasts, weather alerts, and location-based recommendations.',
-      technologies: ['React', 'Node.js', 'OpenWeather API', 'Geolocation'],
-      gradient: 'from-orange-500 to-red-600',
       github: 'https://github.com',
       demo: 'https://demo.com'
     }
@@ -50,7 +26,7 @@ const Projects = () => {
           <p className="text-gray-400 mt-4 text-lg">Things I've built along my journey</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-4">
           {projects.map((project, index) => (
             <div
               key={index}

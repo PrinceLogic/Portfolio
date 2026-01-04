@@ -14,7 +14,7 @@ class ContactCreate(BaseModel):
 class Contact(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
-    email: EmailStr
+    email:EmailStr
     subject: str
     message: str
     timestamp: datetime = Field(default_factory=datetime.utcnow)

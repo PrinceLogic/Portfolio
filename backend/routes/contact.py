@@ -24,12 +24,20 @@ async def create_contact_message(contact_data: ContactCreate):
     Submit a contact form message.
     Stores the message in MongoDB and returns success response.
     """
+    if db is None:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database connection not initialized"
+        )
+    
     try:
         # Create contact object
-        contact = Contact(**contact_data.dict())
+        # Use model_dump() for Pydantic v2, fallback to dict() for v1
+        contact_data_dict = contact_data.model_dump() if hasattr(contact_data, 'model_dump') else contact_data.dict()
+        contact = Contact(**contact_data_dict)
         
         # Convert to dict for MongoDB
-        contact_dict = contact.dict()
+        contact_dict = contact.model_dump() if hasattr(contact, 'model_dump') else contact.dict()
         
         # Insert into MongoDB
         result = await db.contacts.insert_one(contact_dict)
@@ -76,6 +84,12 @@ async def get_contact_messages(status_filter: str = None, limit: int = 100):
     Get all contact messages (for admin use).
     Optional status filter: 'read' or 'unread'
     """
+    if db is None:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database connection not initialized"
+        )
+    
     try:
         query = {}
         if status_filter:
@@ -100,6 +114,12 @@ async def update_contact_status(contact_id: str, new_status: str):
     Update the status of a contact message.
     Status can be 'read' or 'unread'
     """
+    if db is None:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Database connection not initialized"
+        )
+    
     try:
         if new_status not in ["read", "unread"]:
             raise HTTPException(
